@@ -1,0 +1,51 @@
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+
+
+void fillArray(int* arr, int size) {
+    srand(time(0));
+    for (int i = 0; i < size; ++i) {
+        arr[i] = rand() % 50 + 1;
+    }
+}
+
+
+void printArray(int* arr, int size) {
+    for (int i = 0; i < size; ++i) {
+        std::cout << arr[i] << " ";
+    }
+    std::cout << std::endl;
+}
+
+
+void findcouples(int* arr, int size, int target) {
+    for (int i = 0; i < size; ++i) {
+        for (int j = i + 1; j < size; ++j) {
+            if (arr[i] + arr[j] == target) {
+                std::cout << "Найденные пары: " << arr[i] << " + " << arr[j] << " = " << target << std::endl;
+            }
+        }
+    }
+}
+
+int main() {
+    int size;
+    std::cout << "Введите количество элементов в массиве: ";
+    std::cin >> size;
+
+    int* array = new int[size];
+    fillArray(array, size);
+
+    std::cout << "Случайный массив: ";
+    printArray(array, size);
+
+    int sum;
+    std::cout << "Введите желаемую сумму: ";
+    std::cin >> target;
+
+    findcouples(array, size, sum);
+
+    delete[] array;
+    return 0;
+}
